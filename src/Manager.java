@@ -213,9 +213,15 @@ public class Manager {
             else{
                 try { // trying to parse the input to LocalDateTime;
                     LocalDateTime d = LocalDateTime.parse(input,LocalDateTimef);
-                    w.setLastAdjust(d);
-                    w.addLog(d,"Adjusted.");
-                    Visual.success("Successfully adjusted the watch!");
+                    if(d.isAfter(LocalDateTime.now())){
+                        Visual.error("You can't put a date in the future...");
+                    }
+                    else{
+                        w.setLastAdjust(d);
+                        w.addLog(d,"Adjusted.");
+                        Visual.success("Successfully adjusted the watch!");
+                    }
+
                 }
                 catch(Exception ex){
                     Visual.error();
