@@ -28,6 +28,7 @@ public class Visual {
                 "[5] Modify watch data\n" +
                 "[6] Delete watch\n" +
                 "[7] Change program colors\n" +
+                "[8] Check watch full info\n" +
                 "[E] Exit\n" +
                 "Concatenate the option and the ID with and '-', for example to adjust watch 4 type: '3-4'." + END);
     }
@@ -41,11 +42,11 @@ public class Visual {
     }
 
     public static void line() {
-        System.out.println(color2 + "+-------------------------------------------------------------------------------------------------------------------+" + END);
+        System.out.println(color2 + "+--------------------------------------------------------------------------+" + END);
     }
 
     public static void header() {
-        System.out.println(color2 + "|  ID  |  BRAND  |  MODEL  |  MOVEMENT  |  CALIBER  |  THEORETIC ACCURACY  |  LAST ADJUSTED  |  MORE INFO" + END);
+        System.out.println(color2 + "|  ID  |  BRAND  |  MODEL  |  MOVEMENT  |  LAST ADJUSTED  |" + END);
     }
 
     public static void shortHeader() {

@@ -45,13 +45,16 @@ public class Watch implements Serializable {
 
     @Override
     public String toString(){
-        String s = brand+Visual.PIPE+model+Visual.PIPE+type+Visual.PIPE+caliber+Visual.PIPE+theoreticAccuracy;
-
-        return lastAdjust == null ? s+Visual.PIPE+"N/a"+Visual.PIPE+moreInfo : s+Visual.PIPE+lastAdjust.format(Manager.LocalDateTimef)+" "+Manager.getDaysAgo(lastAdjust)+Visual.PIPE+moreInfo;
+        String s = brand+Visual.PIPE+model+Visual.PIPE+type;
+        return lastAdjust == null ? s+Visual.PIPE+"N/a" : s+Visual.PIPE+lastAdjust.format(Manager.LocalDateTimef)+" "+Manager.getDaysAgo(lastAdjust);
     }
 
     public String shortString(){
         return brand+Visual.PIPE+model+Visual.PIPE+type+Visual.PIPE+caliber+Visual.PIPE+theoreticAccuracy+Visual.PIPE+moreInfo;
+    }
+
+    public String fullString(){
+        return null;
     }
 
     public static Watch makeWatch(String input){
