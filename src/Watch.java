@@ -54,7 +54,9 @@ public class Watch implements Serializable {
     }
 
     public String fullString(){
-        return null;
+        String s = brand+Visual.PIPE+model+Visual.PIPE+type+Visual.PIPE+caliber+Visual.PIPE+theoreticAccuracy;
+
+        return lastAdjust == null ? s+Visual.PIPE+"N/a"+Visual.PIPE+moreInfo : s+Visual.PIPE+lastAdjust.format(Manager.LocalDateTimef)+" "+Manager.getDaysAgo(lastAdjust)+Visual.PIPE+moreInfo;
     }
 
     public static Watch makeWatch(String input){

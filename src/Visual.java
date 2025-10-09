@@ -45,12 +45,20 @@ public class Visual {
         System.out.println(color2 + "+--------------------------------------------------------------------------+" + END);
     }
 
+    public static void fullLine() {
+        System.out.println(color2 + "+-------------------------------------------------------------------------------------------------------------------+" + END);
+    }
+
     public static void header() {
-        System.out.println(color2 + "|  ID  |  BRAND  |  MODEL  |  MOVEMENT  |  LAST ADJUSTED  |" + END);
+        System.out.println(color2 + "|  ID  |  BRAND  |  MODEL  |  MOVEMENT  |          LAST  ADJUSTED          |" + END);
     }
 
     public static void shortHeader() {
         System.out.println(color2 + "BRAND | MODEL | MOVEMENT | CALIBER | THEORETIC ACCURACY | MORE INFO" + END);
+    }
+
+    public static void fullHeader(){
+        System.out.println(color2 + "|  ID  |  BRAND  |  MODEL  |  MOVEMENT  |  CALIBER  |  THEORETIC ACCURACY  |  LAST ADJUSTED  |  MORE INFO" + END);
     }
 
 
