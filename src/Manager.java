@@ -115,6 +115,14 @@ public class Manager {
                 }
             }
             case "7" -> {Visual.clear();changeColors();}
+            case "8" -> {
+                if (split.length == 2) {
+                    Visual.clear();
+                    seeFullWatch(split[1]);
+                } else {
+                    Visual.error();
+                }
+            }
             case "e" -> System.out.println("Exiting...\n");
             default -> System.out.println(Visual.RED+"Invalid option...\n"+Visual.END);
         }
@@ -362,6 +370,16 @@ public class Manager {
             Visual.success("Watch logs removed.");
             getInput(true);
         }
+    }
+
+    public void seeFullWatch(String watchId){
+        Watch w = getWatch(watchId);
+        if(w != null){
+            Visual.fullHeader();
+            Visual.fullLine();
+            System.out.printf(w.fullString()+"\n");
+        }
+
     }
 
     private boolean sameDay(LocalDateTime d1, LocalDateTime d2){

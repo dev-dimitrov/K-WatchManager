@@ -17,7 +17,7 @@ public class Visual {
     public static String AT = color2 + "@" + color1;
 
     public static void showTitle() {
-        System.out.println(color1 + "/////////////////// K-WatchManager v4.0.1 /////////////////// || github.com/su-Kaizen\n" + END);
+        System.out.println(color1 + "/////////////////// K-WatchManager v4.0.1 /////////////////// || github.com/dev-dimitrov\n" + END);
     }
 
     public static void showMain() {
@@ -28,6 +28,7 @@ public class Visual {
                 "[5] Modify watch data\n" +
                 "[6] Delete watch\n" +
                 "[7] Change program colors\n" +
+                "[8] Check watch full info\n" +
                 "[E] Exit\n" +
                 "Concatenate the option and the ID with and '-', for example to adjust watch 4 type: '3-4'." + END);
     }
@@ -41,15 +42,23 @@ public class Visual {
     }
 
     public static void line() {
+        System.out.println(color2 + "+--------------------------------------------------------------------------+" + END);
+    }
+
+    public static void fullLine() {
         System.out.println(color2 + "+-------------------------------------------------------------------------------------------------------------------+" + END);
     }
 
     public static void header() {
-        System.out.println(color2 + "|  ID  |  BRAND  |  MODEL  |  MOVEMENT  |  CALIBER  |  THEORETIC ACCURACY  |  LAST ADJUSTED  |  MORE INFO" + END);
+        System.out.println(color2 + "|  ID  |  BRAND  |  MODEL  |  MOVEMENT  |          LAST  ADJUSTED          |" + END);
     }
 
     public static void shortHeader() {
         System.out.println(color2 + "BRAND | MODEL | MOVEMENT | CALIBER | THEORETIC ACCURACY | MORE INFO" + END);
+    }
+
+    public static void fullHeader(){
+        System.out.println(color2 + "|  ID  |  BRAND  |  MODEL  |  MOVEMENT  |  CALIBER  |  THEORETIC ACCURACY  |  LAST ADJUSTED  |  MORE INFO" + END);
     }
 
 
