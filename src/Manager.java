@@ -1,5 +1,3 @@
-import com.sun.source.tree.Tree;
-
 import java.io.*;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
@@ -61,7 +59,10 @@ public class Manager {
             Visual.updateColors(b.readLine());
         }
         catch(IOException ex){
-            ex.printStackTrace();
+            System.err.println("No colors file found. Creating one...\n");
+            colors = "PURPLE-CYAN";
+            saveColors();
+            loadColors();
         }
     }
 
