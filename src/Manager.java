@@ -110,20 +110,20 @@ public class Manager {
             case "6" -> {
                 if (split.length == 2) {
                     Visual.clear();
-                    removeWatch(split[1]);
-                } else {
-                    Visual.error();
-                }
-            }
-            case "7" -> {Visual.clear();changeColors();}
-            case "8" -> {
-                if (split.length == 2) {
-                    Visual.clear();
                     seeFullWatch(split[1]);
                 } else {
                     Visual.error();
                 }
             }
+            case "7" -> {
+                if (split.length == 2) {
+                    Visual.clear();
+                    removeWatch(split[1]);
+                } else {
+                    Visual.error();
+                }
+            }
+            case "8" -> {Visual.clear();changeColors();}
             case "e" -> System.out.println("Exiting...\n");
             default -> System.out.println(Visual.RED+"Invalid option...\n"+Visual.END);
         }
