@@ -158,9 +158,10 @@ public class Manager {
             LocalTime now = LocalTime.now();
             now = now.plusMinutes(1); // The actual time with one minute more
             now = now.minusSeconds(now.getSecond()); // Remove the seconds, to do properly the dif later
+            Visual.ask4Time(now.format(formatter)+":00");
             String input = getInput(false);
             LocalTime watchHour = null;
-
+            
             try{
                watchHour = LocalTime.parse(input); // parse the watch time
             }
