@@ -26,9 +26,9 @@ public class Visual {
                 "[3] Adjust watch\n" +
                 "[4] Show watch logs\n" +
                 "[5] Modify watch data\n" +
-                "[6] Delete watch\n" +
-                "[7] Change program colors\n" +
-                "[8] Check watch full info\n" +
+                "[6] Check watch full info\n" +
+                "[7] Delete watch\n" +
+                "[8] Change program colors\n" +
                 "[E] Exit\n" +
                 "Concatenate the option and the ID with and '-', for example to adjust watch 4 type: '3-4'." + END);
     }
