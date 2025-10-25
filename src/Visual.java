@@ -17,7 +17,7 @@ public class Visual {
     public static String AT = color2 + "@" + color1;
 
     public static void showTitle() {
-        System.out.println(color1 + "/////////////////// K-WatchManager v4.0.1 /////////////////// || github.com/dev-dimitrov\n" + END);
+        System.out.println(color1 + "/////////// K-WatchManager v4.2 /////////// || github.com/dev-dimitrov\n" + END);
     }
 
     public static void showMain() {
