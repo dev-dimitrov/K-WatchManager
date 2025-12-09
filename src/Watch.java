@@ -116,7 +116,12 @@ public class Watch implements Serializable {
     }
 
     public int removeLastEntry(){
-        LocalDateTime k = log.lastKey();
-        return log.remove(k) == null ? -1 : 0;
+        int status = -1;
+        if(!log.isEmpty()){
+            LocalDateTime k = log.lastKey();
+            status = log.remove(k) == null ? -1 : 0;
+        }
+        
+        return status;
     }
 }

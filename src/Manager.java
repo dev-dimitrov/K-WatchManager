@@ -9,7 +9,7 @@ import java.time.*;
 public class Manager {
     public static Scanner sc = new Scanner(System.in);
     public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-    public static DateTimeFormatter LocalDateTimef = DateTimeFormatter.ofPattern("y-MM-dd HH:mm:ss");
+    public static DateTimeFormatter LocalDateTimef = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     ArrayList<Watch> watches;
     private DecimalFormat decimalFormat;
     String colors;
@@ -304,11 +304,11 @@ public class Manager {
                         Visual.success("Successfully removed the last entry");
 
                     } else {
-                        Visual.error("Something wrong happened");
+                        Visual.error("Something wrong happened. Maybe removing when It's already empty?");
                     }
                     getInput(true);
                 }
-                case "3" -> {}
+                case "3" -> {} // Empty for going to the main menu
                 default -> Visual.error();
             }
         }
@@ -380,6 +380,7 @@ public class Manager {
             Visual.fullHeader();
             Visual.fullLine();
             System.out.printf(w.fullString()+"\n");
+            Visual.fullLine();
         }
 
     }
