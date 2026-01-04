@@ -1,3 +1,5 @@
+package dev.dimitrov;
+
 public class LauncherManager {
     public static void main(String[] args){
         Visual.clear();

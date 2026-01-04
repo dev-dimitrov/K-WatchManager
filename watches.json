@@ -1,0 +1,78 @@
+{
+  "watches" : [ {
+    "caliber" : "NH-35A",
+    "brand" : "CUSTOM",
+    "model" : "CUSTOM",
+    "theoreticAccuracy" : "-20 ~ +40 seconds per day",
+    "type" : "AUTOMATIC",
+    "lastAdjust" : "2025-10-26T20:06:45.971238",
+    "log" : {
+      "2025-07-14T12:00" : "Adjusted.",
+      "2025-07-23T12:00" : "-27 seconds deviation. A round -3s per day.",
+      "2025-07-25T12:00" : "-43 seconds deviation. A round -3.91s per day.",
+      "2025-07-26T12:00" : "Adjusted.",
+      "2025-07-29T12:00" : "+7 seconds deviation. A round 2.33s per day.",
+      "2025-08-01T12:00" : "-9 seconds deviation. A round -1.5s per day.",
+      "2025-08-05T12:00" : "-28 seconds deviation. A round -2.8s per day.",
+      "2025-08-10T12:00" : "-70 seconds deviation. A round -4.67s per day.",
+      "2025-08-12T22:45:00.393465400" : "Adjusted.",
+      "2025-08-19T19:44:08.839588600" : "-59 seconds deviation. A round -9.83s per day.",
+      "2025-08-22T12:30" : "Adjusted.",
+      "2025-08-31T15:25:13.087510" : "-59 seconds deviation. A round -3.28s per day.",
+      "2025-08-31T15:26:20.870320200" : "Adjusted.",
+      "2025-09-09T12:56:15.716640300" : "-77 seconds deviation. A round -9.62s per day.",
+      "2025-09-10T20:50:36.028460" : "Adjusted.",
+      "2025-09-23T07:10" : "Adjusted.",
+      "2025-10-02T17:33:23.153711900" : "Adjusted.",
+      "2025-10-21T20:22:39.986983" : "Adjusted.",
+      "2025-10-26T20:06:07.819184" : "-31 seconds deviation. A round -7.75s per day.",
+      "2025-10-26T20:06:45.971238" : "Adjusted."
+    },
+    "moreInfo" : "41h power reserve"
+  }, {
+    "caliber" : "Not specified",
+    "brand" : "CASIO",
+    "model" : "MTP-1370D-1A1V",
+    "theoreticAccuracy" : "20 seconds per month",
+    "type" : "QUARTZ",
+    "lastAdjust" : "2025-10-26T20:16:46.096585",
+    "log" : {
+      "2025-07-12T12:00" : "Adjusted.",
+      "2025-08-24T17:11:05.454421400" : "+15 seconds deviation. A round 0.35s per day.",
+      "2025-09-15T19:45:14.030088900" : "+23 seconds deviation. A round 0.35s per day.",
+      "2025-10-02T17:37:22.572558900" : "+30 seconds deviation. A round 0.37s per day.",
+      "2025-10-02T17:40:57.261929500" : "Adjusted.",
+      "2025-10-21T20:26:08.943593" : "+5 seconds deviation. A round 0.26s per day.",
+      "2025-10-26T20:16:46.096585" : "Adjusted."
+    },
+    "moreInfo" : "3y battery"
+  }, {
+    "caliber" : "Not specified",
+    "brand" : "CASIO",
+    "model" : "LF-20W-1A",
+    "theoreticAccuracy" : "30 seconds a month",
+    "type" : "QUARTZ",
+    "lastAdjust" : "2025-07-13T12:00:00",
+    "log" : {
+      "2025-07-13T12:00" : "Adjusted.",
+      "2025-07-25T12:00" : "-2 seconds deviation. A round -0.17s per day.",
+      "2025-08-24T17:13:13.612429200" : "-7 seconds deviation. A round -0.17s per day.",
+      "2025-09-15T19:46:10.784500400" : "-11 seconds deviation. A round -0.17s per day.",
+      "2025-10-02T17:35:15.702621100" : "-13 seconds deviation. A round -0.16s per day.",
+      "2025-10-21T20:23:10.170784" : "-16 seconds deviation. A round -0.16s per day."
+    },
+    "moreInfo" : "https://www.casio.com/content/dam/casio/global/support/manuals/watches/pdf/35/3551/op3551_EN.pdf"
+  }, {
+    "caliber" : "Not specified",
+    "brand" : "CASIO",
+    "model" : "MW-240 VINTAGE",
+    "theoreticAccuracy" : "Not specified",
+    "type" : "QUARTZ",
+    "lastAdjust" : "2025-09-15T19:52:31.7687802",
+    "log" : {
+      "2025-09-15T19:52:31.768780200" : "Adjusted.",
+      "2025-10-21T20:28:07.330496" : "+75 seconds deviation. A round 2.08s per day."
+    },
+    "moreInfo" : "Not specified"
+  } ]
+}

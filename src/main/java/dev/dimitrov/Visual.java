@@ -1,3 +1,5 @@
+package dev.dimitrov;
+
 import java.io.IOException;
 
 public class Visual {

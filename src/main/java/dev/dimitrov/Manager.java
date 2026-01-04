@@ -1,9 +1,18 @@
+package dev.dimitrov;
+
 import java.io.*;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.time.*;
 
 public class Manager {
@@ -13,10 +22,11 @@ public class Manager {
     ArrayList<Watch> watches;
     private DecimalFormat decimalFormat;
     String colors;
-    public static String f = "watches.bin";
+    public static String f = "watches.json";
     public Manager(){
+        
         decimalFormat = new DecimalFormat("#.##");
-        int status = loadWatches();
+        int status = loadWatchesJson();
         loadColors();
         if(status == -1){
             watches = new ArrayList<>();
@@ -25,18 +35,19 @@ public class Manager {
     }
 
     // loads the list of watches and returns -1 if it fails.
-    public int loadWatches(){
+    public int loadWatchesBin(){
         try(ObjectInputStream o = new ObjectInputStream(new FileInputStream(f))){
             watches = (ArrayList<Watch>) o.readObject();
         }
         catch(ClassNotFoundException | IOException ex){
+            ex.printStackTrace();
             return -1;
         }
         return 0;
     }
 
     // Save the list of watches
-    public void saveWatches(){
+    public void saveWatchesBin(){
         try(ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(f))){
             o.writeObject(watches);
         }
@@ -143,7 +154,7 @@ public class Manager {
         Watch w = Watch.makeWatch(watchInput);
         if(w != null){
             watches.add(w);
-            this.saveWatches();
+            this.saveWatchesJson();
             System.out.println(Visual.GREEN+"Successfully added!"+Visual.END);
         }
     }
@@ -201,7 +212,7 @@ public class Manager {
                 // Without the deviation per day
                 w.addLog(LocalDateTime.now(),diff+" seconds deviation.");
             }
-            saveWatches(); // important to save the watches to keep the log updated
+            saveWatchesJson(); // important to save the watches to keep the log updated
         }
     }
 
@@ -237,7 +248,7 @@ public class Manager {
                     Visual.error();
                 }
             }
-            saveWatches();
+            saveWatchesJson();
         }
     }
 
@@ -281,7 +292,7 @@ public class Manager {
             String result[] = getInput(false).split("@");
             int status = w.modifyData(result);
             if(status == 0){
-                saveWatches();
+                saveWatchesJson();
                 Visual.success("Watch data successfully changed!");
             }
         }
@@ -300,7 +311,7 @@ public class Manager {
                 case "2" -> {
                     int status = w.removeLastEntry();
                     if (status == 0) {
-                        saveWatches();
+                        saveWatchesJson();
                         Visual.success("Successfully removed the last entry");
 
                     } else {
@@ -337,7 +348,7 @@ public class Manager {
             String choice = getInput(false).toLowerCase();
             if(choice.equals("y")){
                 watches.remove(w);
-                saveWatches();
+                saveWatchesJson();
                 Visual.success("Watch removed...");
             }
             else{
@@ -368,7 +379,7 @@ public class Manager {
         String input = getInput(false).toLowerCase();
         if(input.equals("y")){
             w.clearLog();
-            saveWatches();
+            saveWatchesJson();
             Visual.success("Watch logs removed.");
             getInput(true);
         }
@@ -387,5 +398,41 @@ public class Manager {
 
     private boolean sameDay(LocalDateTime d1, LocalDateTime d2){
         return d1.getDayOfYear() == d2.getDayOfYear() && d1.getYear() == d2.getYear();
+    }
+
+    public void saveWatchesJson(){
+        ObjectNode root = null;
+        ArrayNode w = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        try {
+            root = mapper.createObjectNode();
+
+            w = mapper.valueToTree(watches);
+            System.out.println(w.size());
+            root.set("watches",w);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(f), root);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int loadWatchesJson(){
+        int status = 0;
+        ObjectNode root = null;
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);    
+
+        try {
+            root = (ObjectNode) mapper.readTree(new File(f));
+            ArrayNode w = (ArrayNode) root.get("watches");
+            watches = new ArrayList<>(mapper.convertValue(w, new TypeReference<List<Watch>>(){}));
+        } catch (IOException e) {
+            status = -1;
+            e.printStackTrace();
+        }
+        return status;
     }
 }
