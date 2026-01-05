@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Watch implements Serializable {
     private String caliber;
     private String brand;
@@ -43,6 +45,11 @@ public class Watch implements Serializable {
 
     public void setModel(String m){
         model = m.toUpperCase();
+    }
+
+    @JsonIgnore
+    public String getName(){
+        return brand+" "+model;
     }
 
     @Override

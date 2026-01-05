@@ -1,6 +1,7 @@
 package dev.dimitrov;
 
 import java.io.*;
+import java.nio.channels.Pipe.SourceChannel;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -163,7 +164,7 @@ public class Manager {
     public void checkAccuracy(String id){
         Watch w = getWatch(id); // get the specified watch
         if(w != null){
-            
+            System.out.println("Checking "+w.getName());
             LocalDateTime last = w.getLastAdjust(); // The last adjustment
             LocalDateTime nowDay = LocalDateTime.now();
             LocalTime now = LocalTime.now();
@@ -219,7 +220,7 @@ public class Manager {
     public void adjustWatch(String id){
         Watch w = getWatch(id);
         if(w != null){
-            
+            System.out.println("Adjusting "+w.getName());
             System.out.println(Visual.color1 +"Write 'now' if it was adjusted now or write a date("+Visual.color2+"YYYY-MM-DD hh:mm:ss"+Visual.color1 +")"+Visual.END);
 
             String input = getInput(false).toLowerCase();
@@ -303,6 +304,8 @@ public class Manager {
         Watch w = getWatch(id);
         if(w != null){
             // if this returns 0 means that the log is not empty
+
+            System.out.println("Showing logs of "+w.getName());
             int r = w.showHistory();
             Visual.logMenu();
             input = getInput(false);
