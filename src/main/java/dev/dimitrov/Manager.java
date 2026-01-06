@@ -37,7 +37,7 @@ public class Manager {
     }  
 
     private void loadProperties(){
-        Properties prop = new Properties();
+        prop = new Properties();
         try {
             prop.load(new FileReader(fprop));
             
@@ -52,12 +52,30 @@ public class Manager {
 
     private void saveProperties(){
         try {
-            prop.store(new FileWriter(fprop), null);
+            prop.store(new FileWriter(fprop), "github.com/dev-dimitrov");
             updateColors();
         } catch (IOException e) {
             System.err.println("Hubo un error mientras se guardaban los ajustes");
             e.printStackTrace();
         }
+    }
+
+    public void updateColors(){
+        if(prop != null){
+            Visual.updateColors(prop.getProperty("color1")+"-"+prop.getProperty("color2"));
+        }
+        else{
+            System.err.println("No properties file found. Creating one...\n");
+            saveProperties();
+            setColors(new String[]{"PURPLE","CYAN"});
+            loadProperties();
+        }
+    }
+
+    private void setColors(String[] colors){
+        prop.setProperty("color1", colors[0]);
+        prop.setProperty("color2", colors[1]);
+        saveProperties();;
     }
 
     // loads the list of watches and returns -1 if it fails.
@@ -82,17 +100,7 @@ public class Manager {
         }
     }
 
-    public void updateColors(){
-        if(prop != null){
-            Visual.updateColors(prop.getProperty("color1")+"-"+prop.getProperty("color2"));
-        }
-        else{
-            System.err.println("No properties file found. Creating one...\n");
-            setColors(new String[]{"PURPLE","CYAN"});
-            saveProperties();
-            loadProperties();
-        }
-    }
+    
 
     // show main menu
     public String mainMenu(){
@@ -391,11 +399,7 @@ public class Manager {
         }
     }
 
-    private void setColors(String[] colors){
-        prop.setProperty("color1", colors[0]);
-        prop.setProperty("color2", colors[1]);
-        saveProperties();;
-    }
+    
 
     public void removeAllLogs(Watch w){
         System.out.println(Visual.color1 +"You sure [Y/n]"+Visual.END);
