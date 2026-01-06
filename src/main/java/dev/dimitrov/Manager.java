@@ -1,7 +1,6 @@
 package dev.dimitrov;
 
 import java.io.*;
-import java.nio.channels.Pipe.SourceChannel;
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -306,7 +305,7 @@ public class Manager {
             // if this returns 0 means that the log is not empty
 
             System.out.println("Showing logs of "+w.getName());
-            int r = w.showHistory();
+            w.showHistory();
             Visual.logMenu();
             input = getInput(false);
             switch(input) {
