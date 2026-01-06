@@ -26,6 +26,7 @@ public class Manager {
     
     private static String fprop = "settings.properties";
     public Manager(){
+        prop = new Properties();
         loadProperties();
 
         decimalFormat = new DecimalFormat("#.##");
@@ -37,23 +38,31 @@ public class Manager {
     }  
 
     private void loadProperties(){
-        prop = new Properties();
         try {
+            // loads it
             prop.load(new FileReader(fprop));
-            
+
+            // if everything is correct, update the colors
             updateColors();
         } catch (IOException e) {
-            System.err.println("Ocurrió un error mientras se cargaban las propiedas");
-            prop = null;
-            e.printStackTrace();
+            System.err.println("Error while loading the properties file, creating a new one...\n");
+            // Setting properties
+            setProperty("color1", "PURPLE");
+            setProperty("color2", "CYAN");
 
+            // Saving them in a file
+            saveProperties();
+
+            // updating the colors
+            updateColors();
         }
     }
 
     private void saveProperties(){
         try {
+        
+
             prop.store(new FileWriter(fprop), "github.com/dev-dimitrov");
-            updateColors();
         } catch (IOException e) {
             System.err.println("Hubo un error mientras se guardaban los ajustes");
             e.printStackTrace();
@@ -61,21 +70,11 @@ public class Manager {
     }
 
     public void updateColors(){
-        if(prop != null){
-            Visual.updateColors(prop.getProperty("color1")+"-"+prop.getProperty("color2"));
-        }
-        else{
-            System.err.println("No properties file found. Creating one...\n");
-            saveProperties();
-            setColors(new String[]{"PURPLE","CYAN"});
-            loadProperties();
-        }
+        Visual.updateColors(prop.getProperty("color1")+"-"+prop.getProperty("color2"));
     }
 
-    private void setColors(String[] colors){
-        prop.setProperty("color1", colors[0]);
-        prop.setProperty("color2", colors[1]);
-        saveProperties();;
+    private void setProperty(String k, String v){
+        prop.setProperty(k, v);
     }
 
     // loads the list of watches and returns -1 if it fails.
@@ -394,7 +393,11 @@ public class Manager {
             Visual.error();
         }
         else{
-            setColors(choice.split("-"));
+            String[] c = choice.split("-");
+
+            setProperty("color1", c[0]);
+            setProperty("color2", c[1]);
+            saveProperties();
             Visual.success("Successfully changed the colors!");
         }
     }
