@@ -21,16 +21,42 @@ public class Manager {
     public static DateTimeFormatter LocalDateTimef = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     ArrayList<Watch> watches;
     private DecimalFormat decimalFormat;
-    String colors;
     public static String f = "watches.json";
+    private Properties prop;
+    
+    private static String fprop = "settings.properties";
     public Manager(){
-        
+        loadProperties();
+
         decimalFormat = new DecimalFormat("#.##");
         int status = loadWatchesJson();
-        loadColors();
         if(status == -1){
             watches = new ArrayList<>();
 
+        }
+    }  
+
+    private void loadProperties(){
+        Properties prop = new Properties();
+        try {
+            prop.load(new FileReader(fprop));
+            
+            updateColors();
+        } catch (IOException e) {
+            System.err.println("Ocurrió un error mientras se cargaban las propiedas");
+            prop = null;
+            e.printStackTrace();
+
+        }
+    }
+
+    private void saveProperties(){
+        try {
+            prop.store(new FileWriter(fprop), null);
+            updateColors();
+        } catch (IOException e) {
+            System.err.println("Hubo un error mientras se guardaban los ajustes");
+            e.printStackTrace();
         }
     }
 
@@ -56,24 +82,15 @@ public class Manager {
         }
     }
 
-    public void saveColors(){
-        try(BufferedWriter b = new BufferedWriter(new FileWriter("colors.txt"))){
-            b.write(colors);
+    public void updateColors(){
+        if(prop != null){
+            Visual.updateColors(prop.getProperty("color1")+"-"+prop.getProperty("color2"));
         }
-        catch(IOException ex){
-            ex.printStackTrace();
-        }
-    }
-
-    public void loadColors(){
-        try(BufferedReader b = new BufferedReader(new FileReader("colors.txt"))){
-            Visual.updateColors(b.readLine());
-        }
-        catch(IOException ex){
-            System.err.println("No colors file found. Creating one...\n");
-            colors = "PURPLE-CYAN";
-            saveColors();
-            loadColors();
+        else{
+            System.err.println("No properties file found. Creating one...\n");
+            setColors(new String[]{"PURPLE","CYAN"});
+            saveProperties();
+            loadProperties();
         }
     }
 
@@ -369,12 +386,16 @@ public class Manager {
             Visual.error();
         }
         else{
-            this.colors = choice;
-            saveColors();
+            setColors(choice.split("-"));
             Visual.success("Successfully changed the colors!");
         }
     }
 
+    private void setColors(String[] colors){
+        prop.setProperty("color1", colors[0]);
+        prop.setProperty("color2", colors[1]);
+        saveProperties();;
+    }
 
     public void removeAllLogs(Watch w){
         System.out.println(Visual.color1 +"You sure [Y/n]"+Visual.END);
