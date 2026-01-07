@@ -21,7 +21,7 @@ public class Manager {
     public static DateTimeFormatter LocalDateTimef = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     ArrayList<Watch> watches;
     private DecimalFormat decimalFormat;
-    public static String f = "watches.json";
+    public static String f;
     private Properties prop;
     
     private static String fprop = "settings.properties";
@@ -33,7 +33,6 @@ public class Manager {
         int status = loadWatchesJson();
         if(status == -1){
             watches = new ArrayList<>();
-
         }
     }  
 
@@ -41,15 +40,15 @@ public class Manager {
         try {
             // loads it
             prop.load(new FileReader(fprop));
-
+            f = prop.getProperty("WATCHFILE");
             // if everything is correct, update the colors
             updateColors();
         } catch (IOException e) {
             System.err.println("Error while loading the properties file, creating a new one...\n");
             // Setting properties
-            setProperty("color1", "PURPLE");
-            setProperty("color2", "CYAN");
-
+            setProperty("COLOR1", "PURPLE");
+            setProperty("COLOR2", "CYAN");
+            setProperty("WATCHFILE", "watches.json");
             // Saving them in a file
             saveProperties();
 
@@ -70,7 +69,7 @@ public class Manager {
     }
 
     public void updateColors(){
-        Visual.updateColors(prop.getProperty("color1")+"-"+prop.getProperty("color2"));
+        Visual.updateColors(prop.getProperty("COLOR1")+"-"+prop.getProperty("COLOR2"));
     }
 
     private void setProperty(String k, String v){
@@ -395,8 +394,8 @@ public class Manager {
         else{
             String[] c = choice.split("-");
 
-            setProperty("color1", c[0]);
-            setProperty("color2", c[1]);
+            setProperty("COLOR1", c[0]);
+            setProperty("COLOR2", c[1]);
             saveProperties();
             Visual.success("Successfully changed the colors!");
         }
