@@ -100,7 +100,7 @@ public class Watch implements Serializable {
 
     public int showHistory(){
         int result = -1;
-        System.out.println(Visual.CYAN+"+-----------------------------------+"+Visual.END);
+        System.out.println(Visual.color2+"+-----------------------------------+"+Visual.END);
         if(!log.isEmpty()){
             for(LocalDateTime date: log.keySet()){
                 // String d = date.format(Manager.formatter);
@@ -112,7 +112,7 @@ public class Watch implements Serializable {
             System.out.println(Visual.color1 +"No logs recorded"+Visual.END);
             result = 1;
         }
-        System.out.println(Visual.CYAN+"+-----------------------------------+"+Visual.END);
+        System.out.println(Visual.color2+"+-----------------------------------+"+Visual.END);
         return result;
     }
 

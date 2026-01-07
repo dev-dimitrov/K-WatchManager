@@ -159,7 +159,7 @@ public class Manager {
             }
             case "8" -> {Visual.clear();changeColors();}
             case "e" -> System.out.println("Exiting...\n");
-            default -> System.out.println(Visual.RED+"Invalid option...\n"+Visual.END);
+            default -> System.out.println(Visual.colors.get("RED")+"Invalid option...\n"+Visual.END);
         }
 
         if(!split[0].equals("e") && !split[0].equals("4")){
@@ -178,7 +178,7 @@ public class Manager {
         if(w != null){
             watches.add(w);
             this.saveWatchesJson();
-            System.out.println(Visual.GREEN+"Successfully added!"+Visual.END);
+            System.out.println(Visual.colors.get("GREEN")+"Successfully added!"+Visual.END);
         }
     }
 
@@ -384,7 +384,9 @@ public class Manager {
 
     public void changeColors(){
         System.out.println("Select the color1 and color2 for the program:\n" +
-                Visual.RED+"RED "+Visual.GREEN+"GREEN"+Visual.YELLOW+" YELLOW"+Visual.BLUE+" BLUE"+Visual.CYAN+" CYAN"+Visual.PURPLE+" PURPLE"+Visual.END);
+                Visual.colors.get("RED")+"RED "+Visual.colors.get("GREEN")+"GREEN"+
+                Visual.colors.get("YELLOW")+" YELLOW"+Visual.colors.get("BLUE")+" BLUE"+
+                Visual.colors.get("CYAN")+" CYAN"+Visual.colors.get("PURPLE")+" PURPLE"+Visual.END);
         String choice = getInput(false).toUpperCase();
         int status = Visual.updateColors(choice);
 

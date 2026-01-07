@@ -1,23 +1,24 @@
 package dev.dimitrov;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class Visual {
     public static String color1 = "";
     public static String color2 = "";
 
-    public static final String BLACK = "\033[0;30m";
-    public static final String RED = "\033[0;31m";
-    public static final String GREEN = "\033[0;32m";
-    public static final String YELLOW = "\033[0;33m";
-    public static final String BLUE = "\033[0;34m";
-    public static final String PURPLE = "\033[0;35m";
-    public static final String CYAN = "\033[0;36m";
-    public static final String WHITE = "\033[0;37m";
     public static final String END = "\033[0m";
     public static String PIPE = color2 + " | " + END;
     public static String AT = color2 + "@" + color1;
-
+    public static Map<String,String> colors = Map.of(
+        "RED","\033[0;31m",
+        "GREEN","\033[0;32m",
+        "YELLOW","\033[0;33m",
+        "BLUE","\033[0;34m",
+        "PURPLE","\033[0;35m",
+        "CYAN","\033[0;36m",
+        "WHITE",""
+    );
     public static void showTitle() {
         System.out.println(color1 + "/////////// K-WatchManager v4.2 /////////// || github.com/dev-dimitrov\n" + END);
     }
@@ -65,12 +66,12 @@ public class Visual {
 
 
     public static void error() {
-        System.out.println(Visual.RED + "Please type in the correct format..." + Visual.END);
+        System.out.println(colors.get("RED") + "Please type in the correct format..." + Visual.END);
     }
 
     // Custom error message
     public static void error(String message) {
-        System.out.println(Visual.RED + message + Visual.END);
+        System.out.println(colors.get("RED") + message + Visual.END);
     }
 
     // Clears the terminal
@@ -88,45 +89,15 @@ public class Visual {
     }
 
     public static void success(String message) {
-        System.out.println(Visual.GREEN + message + Visual.END);
+        System.out.println(colors.get("GREEN") + message + Visual.END);
     }
 
     public static int updateColors(String colors) {
         String c[] = colors.split("-");
+        
         if (c.length == 2) {
-            int cont = 0;
-            while (cont < 2) {
-                switch (c[cont]) {
-                    case "RED" -> {
-                        Visual.color1 = cont == 0 ? Visual.RED : Visual.color1;
-                        Visual.color2 = cont == 1 ? Visual.RED : Visual.color2;
-                    }
-                    case "CYAN" -> {
-                        Visual.color1 = cont == 0 ? Visual.CYAN : Visual.color1;
-                        Visual.color2 = cont == 1 ? Visual.CYAN : Visual.color2;
-                    }
-                    case "YELLOW" -> {
-                        Visual.color1 = cont == 0 ? Visual.YELLOW : Visual.color1;
-                        Visual.color2 = cont == 1 ? Visual.YELLOW : Visual.color2;
-                    }
-                    case "BLUE" -> {
-                        Visual.color1 = cont == 0 ? Visual.BLUE : Visual.color1;
-                        Visual.color2 = cont == 1 ? Visual.BLUE : Visual.color2;
-                    }
-                    case "GREEN" -> {
-                        Visual.color1 = cont == 0 ? Visual.GREEN : Visual.color1;
-                        Visual.color2 = cont == 1 ? Visual.GREEN : Visual.color2;
-                    }
-                    case "PURPLE" -> {
-                        Visual.color1 = cont == 0 ? Visual.PURPLE : Visual.color1;
-                        Visual.color2 = cont == 1 ? Visual.PURPLE : Visual.color2;
-                    }
-                    default -> {
-                        return -1;
-                    }
-                }
-                cont++;
-            }
+            color1 = Visual.colors.get(c[0].toUpperCase());
+            color2 = Visual.colors.get(c[1].toUpperCase());
             // Updating the color icons
             AT =color2+"@"+color1;
             PIPE =color2+" | "+END;
