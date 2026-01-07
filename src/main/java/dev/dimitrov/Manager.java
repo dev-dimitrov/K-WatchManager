@@ -178,7 +178,7 @@ public class Manager {
         if(w != null){
             watches.add(w);
             this.saveWatchesJson();
-            System.out.println(Visual.colors.get("GREEN")+"Successfully added!"+Visual.END);
+            Visual.success("Successfully added!");
         }
     }
 
