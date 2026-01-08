@@ -20,7 +20,7 @@ public class Visual {
         "WHITE",""
     );
     public static void showTitle() {
-        System.out.println(color1 + "/////////// K-WatchManager v4.2 /////////// || github.com/dev-dimitrov\n" + END);
+        System.out.println(color1 + "/////////// K-WatchManager v4.3 /////////// || github.com/dev-dimitrov\n" + END);
     }
 
     public static void showMain() {
