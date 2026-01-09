@@ -441,7 +441,6 @@ public class Manager {
             root = mapper.createObjectNode();
 
             w = mapper.valueToTree(watches);
-            System.out.println(w.size());
             root.set("watches",w);
             mapper.writerWithDefaultPrettyPrinter().writeValue(new File(f), root);
         } catch (Exception e) {
@@ -461,9 +460,13 @@ public class Manager {
             ArrayNode w = (ArrayNode) root.get("watches");
             watches = new ArrayList<>(mapper.convertValue(w, new TypeReference<List<Watch>>(){}));
         } catch (IOException e) {
+            Visual.error("Watch file not found, creating a new one...");
             status = -1;
-            e.printStackTrace();
         }
+        catch (ClassCastException e) {
+            status = -1;
+        }
+
         return status;
     }
 }
